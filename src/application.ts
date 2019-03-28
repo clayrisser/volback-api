@@ -9,6 +9,7 @@ import { RestApplication } from '@loopback/rest';
 import { ServiceMixin } from '@loopback/service-proxy';
 import * as path from 'path';
 import { MySequence } from './sequence';
+import { BivacServiceProvider } from './services';
 
 export class VolbackApiApplication extends BootMixin(
   ServiceMixin(RepositoryMixin(RestApplication))
@@ -21,6 +22,8 @@ export class VolbackApiApplication extends BootMixin(
 
     // Set up default home page
     this.static('/', path.join(__dirname, '../public'));
+
+    this.bind('services.BivacService').toProvider(BivacServiceProvider);
 
     // Customize @loopback/rest-explorer configuration here
     this.bind(RestExplorerBindings.CONFIG).to({
