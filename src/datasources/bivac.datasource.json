@@ -1,15 +1,5 @@
 {
   "name": "bivac",
   "connector": "loopback-connector-cli",
-  "command": "bivac",
-  "operations": [
-    {
-      "template": {
-        "args": ["--help"]
-      },
-      "functions": {
-        "help": []
-      }
-    }
-  ]
+  "command": "bivac"
 }

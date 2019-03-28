@@ -4,6 +4,10 @@ import { BivacDataSource } from '../datasources';
 
 export interface BivacService {
   help(): Promise<string>;
+
+  getVolumes(): Promise<string[]>;
+
+  backupVolume(volumeId: string): Promise<string>;
 }
 
 export class BivacServiceProvider implements Provider<BivacService> {

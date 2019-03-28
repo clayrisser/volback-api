@@ -1,4 +1,10 @@
-import { Request, RestBindings, get, ResponseObject } from '@loopback/rest';
+import {
+  Request,
+  RestBindings,
+  get,
+  ResponseObject,
+  param
+} from '@loopback/rest';
 import { inject } from '@loopback/context';
 import { BivacService } from '../services';
 
@@ -58,5 +64,17 @@ export class PingController {
     return {
       manpage: await this.bivacService.help()
     };
+  }
+
+  @get('/volumes')
+  async getVolumes(): Promise<object> {
+    return await this.bivacService.getVolumes();
+  }
+
+  @get('/backup/{volumeId}')
+  async backupVolume(
+    @param.path.string('volumeId') volumeId: string
+  ): Promise<object> {
+    return { message: await this.bivacService.backupVolume(volumeId) };
   }
 }
